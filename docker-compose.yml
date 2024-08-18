@@ -1,0 +1,10 @@
+services:
+  arch:
+    build: . 
+    tty: true
+    stdin_open: true
+    container_name: ArchEnv
+
+    volumes:
+      - /home/angel/Documents/archPoryect/:/home/devEnv/
+      - /home/angel/Documents/archPoryect/nvim:/root/.config/nvim/
