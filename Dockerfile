@@ -16,3 +16,8 @@ RUN pacman -Syy && pacman -Sy --noconfirm \
 WORKDIR /home/devEnv/
 
 RUN curl -s "https://get.sdkman.io" | bash
+
+RUN git clone https://github.com/NataleMarco/nvim.git ~/.config/nvim
+RUN git clone https://github.com/Marcos126/biblioteca.git /home/devEnv/biblioteca
+
+ENTRYPOINT [ "nvim", "." ]

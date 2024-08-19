@@ -7,4 +7,3 @@ services:
 
     volumes:
       - /home/angel/Documents/archPoryect/:/home/devEnv/
-      - /home/angel/Documents/archPoryect/nvim:/root/.config/nvim/
