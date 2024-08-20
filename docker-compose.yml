@@ -1,9 +1,37 @@
+version: '3.8'
+
 services:
   arch:
-    build: . 
+    build: ./arch
     tty: true
     stdin_open: true
     container_name: ArchEnv
-
     volumes:
-      - /home/angel/Documents/archPoryect/:/home/devEnv/
+      - type: bind 
+        source: /home/angel/Documents/bibliotecaAPI/
+        target: /home/developer/proyecto
+        bind:
+          propagation: rslave
+    depends_on:
+      - database
+    networks:
+      - devnetwork
+
+  database:
+    build: ./postgres
+    tty: false
+    container_name: database
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+        - devnetwork
+
+networks:
+  devnetwork:
+    driver: bridge
+
+volumes:
+  pgdata:
+
