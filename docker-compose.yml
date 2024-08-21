@@ -12,6 +12,7 @@ services:
         target: /home/developer/proyecto
         bind:
           propagation: rslave
+      - neovimdata:/home/developer/.local
     depends_on:
       - database
     networks:
@@ -21,6 +22,10 @@ services:
     build: ./postgres
     tty: false
     container_name: database
+    environment:
+      POSTGRES_DB: biblioteca
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234   
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -34,4 +39,4 @@ networks:
 
 volumes:
   pgdata:
-
+  neovimdata:

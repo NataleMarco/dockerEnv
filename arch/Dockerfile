@@ -32,6 +32,12 @@ RUN ssh-keygen -b 2048 -t rsa -N "" -A && \
 RUN echo 'X11Forwarding yes' >> /etc/ssh/sshd_config && \
     echo 'X11UseLocalhost no' >> /etc/ssh/sshd_config
 
+RUN chown developer:developer /home/developer
+
+RUN mkdir /home/developer/.local
+
+RUN chown developer:developer /home/developer/.local
+
 USER developer 
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -48,6 +54,5 @@ WORKDIR /home/developer/proyecto
 
 USER root
 
-RUN chown developer:developer /home/developer
 
 ENTRYPOINT [ "/usr/bin/sshd", "-D" ]
