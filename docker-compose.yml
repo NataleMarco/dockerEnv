@@ -6,9 +6,11 @@ services:
     tty: true
     stdin_open: true
     container_name: ArchEnv
+    ports:
+      - 80:80
     volumes:
       - type: bind 
-        source: /home/angel/Documents/bibliotecaAPI/
+        source: /home/angel/Documents/pizzeriaAPI/
         target: /home/developer/proyecto
         bind:
           propagation: rslave
@@ -19,17 +21,27 @@ services:
       - devnetwork
 
   database:
-    build: ./postgres
+    # build: ./postgres
+    # tty: false
+    # container_name: database
+    # environment:
+    #   POSTGRES_DB: biblioteca
+    #   POSTGRES_USER: admin
+    #   POSTGRES_PASSWORD: 1234   
+    # volumes:
+    #   - pgdata:/var/lib/postgresql/data
+    # ports:
+    #   - 5432:5432
+    build: ./mysql
     tty: false
     container_name: database
     environment:
-      POSTGRES_DB: biblioteca
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 1234   
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+      MYSQL_DATABASE: pizzeria
+      MYSQL_ROOT_PASSWORD: 1234
     ports:
-      - 5432:5432
+      - 3306:3306
+    volumes:
+      - mysqldata:/var/lib/mysql
     networks:
         - devnetwork
 
@@ -38,5 +50,6 @@ networks:
     driver: bridge
 
 volumes:
-  pgdata:
+  # pgdata:
+  mysqldata:
   neovimdata:

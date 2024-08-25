@@ -1,6 +1,7 @@
 FROM archlinux:latest
 
 EXPOSE 22
+EXPOSE 80
 
 VOLUME /home/developer/proyecto
 
@@ -38,6 +39,8 @@ RUN mkdir /home/developer/.local
 
 RUN chown developer:developer /home/developer/.local
 
+RUN chown developer:developer /home/developer/proyecto
+
 USER developer 
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -46,7 +49,7 @@ RUN curl -s "https://get.sdkman.io" | bash
 
 RUN source ~/.sdkman/bin/sdkman-init.sh && sdk install maven 
 
-RUN source ~/.sdkman/bin/sdkman-init.sh && sdk install java 17.0.12-oracle
+RUN source ~/.sdkman/bin/sdkman-init.sh && sdk install java 17.0.12-amzn   
 
 RUN git clone https://github.com/NataleMarco/nvim.git ~/.config/nvim
 
