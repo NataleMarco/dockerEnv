@@ -10,7 +10,7 @@ services:
       - 80:80
     volumes:
       - type: bind 
-        source: /home/angel/Documents/pizzeriaAPI/
+        source: /home/angel/Documents/proyectos/pizzeriaAPI
         target: /home/developer/proyecto
         bind:
           propagation: rslave
